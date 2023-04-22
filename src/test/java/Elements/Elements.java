@@ -67,6 +67,8 @@ public class Elements {
     public WebElement radioBtn4;
     @FindBy(xpath = "//div[@id='save-application-column']/button[@type='button']")
     public WebElement saveProgress;
+    @FindBy(xpath = "//*[@id=\"application-rendered-form\"]/div[3]/div[1]")
+    public WebElement successMessage;
 
 
     public Elements(WebDriver driver) {

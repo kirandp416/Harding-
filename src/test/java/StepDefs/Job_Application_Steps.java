@@ -107,8 +107,16 @@ public class Job_Application_Steps {
             operations.basicDetails("Poorna Kiran Dasari : kirandp416@gmail.com");
             operations.radioBtns();
             operations.saveProgress();
+            sleep(4000);
+            if (operations.successMessage()) {
+                System.out.println("Success");
+                driver.quit();
+            } else {
+                fail("Did not save the application");
+                driver.quit();
+            }
 
-            driver.quit();
+
         } else if (driver.findElement(By.className("error")).isDisplayed()) {
             if (!driver.getPageSource().contains(error)) {
                 fail("Error message doesn't match");

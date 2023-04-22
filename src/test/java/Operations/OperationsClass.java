@@ -85,4 +85,6 @@ public class OperationsClass {
     public void saveProgress(){
         elements.saveProgress.click();
     }
+    public boolean successMessage(){return elements.successMessage.isDisplayed();}
 }
+
