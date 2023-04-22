@@ -36,7 +36,6 @@ public class Job_Application_Steps {
     public void that_i_am_looking_at_the_company_s_homepage() {
 
 
-
         driver.get("https://www.hardingretail.com/");
 
         driver.manage().window().maximize();
