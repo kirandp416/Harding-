@@ -1,4 +1,5 @@
 Feature: Harding+ Careers Page
+
   @P2
   Scenario: Job Application
 
@@ -18,13 +19,13 @@ Feature: Harding+ Careers Page
     And searching for an Automated Test Analyst job
     When I click on apply button
     Then I should be able to fill in the '<mandatory fields>' with the Basic data and upload '<file>' on the first page
-      | Surname | Email     | Phone Number | Town    |
-      | Nemeth  | aa@aa.com | 07777711111  | Bristol |
+      | Surname | Email           | Phone Number | Town   |
+      | sgffdsg | dfgfdg@hers.com | 07923375523  | dfgdfg |
     And I should get the '<expected result>' when submitting the application.
 
     Examples:
-      | mandatory fields | file                                                            | expected result        |
-      | Agnes            | C:\Automation\Harding+\Harding\src\main\resources\PDF upload.exe|                        |
-      | Agnes            | C:\Automation\Harding+\Harding\src\main\resources\png upload.exe |                        |
-      | Agnes            | C:\Automation\Harding+\Harding\src\main\resources\exeupload.exe |                        |
-      |                  | C:\Automation\Harding+\Harding\src\main\resources\PDF upload.exe| This field is required |
+      | mandatory fields | file                                                             | expected result        |
+      | vcxdbxvc         | C:\Automation\Harding+\Harding\src\main\resources\PDF upload.exe |                        |
+      | xvxcv            | C:\Automation\Harding+\Harding\src\main\resources\png upload.exe | This field is required |
+      | xbssd            | C:\Automation\Harding+\Harding\src\main\resources\exeupload.exe  | This field is required |
+      |                  | C:\Automation\Harding+\Harding\src\main\resources\PDF upload.exe | This field is required |

@@ -17,6 +17,9 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import javax.swing.*;
 import java.io.IOException;
 import java.time.Duration;
+import java.util.concurrent.TimeUnit;
+
+import static junit.framework.TestCase.*;
 
 public class Job_Application_Steps {
 
@@ -48,15 +51,12 @@ public class Job_Application_Steps {
         driver.findElement(By.xpath("//body//div[@class='page-banner']//a[@href='https://careers.hardingretail.com/Department/Landside']")).click();
         driver.findElement(By.id("txtSearchField")).sendKeys("Logistics Administrator");
         driver.findElement(By.id("btnSearch")).click();
-        try {
-            Thread.sleep(1000);
-        } catch (InterruptedException e) {
-            throw new RuntimeException(e);
-        }
+        sleep(5000);
         driver.findElement(By.linkText("Logistics Administrator")).click();
-
+        sleep(4000);
 
     }
+
 
     @When("I click on apply button")
     public void i_click_on_apply_button() {
@@ -75,19 +75,20 @@ public class Job_Application_Steps {
         driver.findElement(By.xpath("/html//div[@id='ApplicantDetailsControl']/div[@class='panel-body']/div[2]/div[@class='col-lg-6']/div/input[@name='ApplicantMunicipality']")).sendKeys(dataTable.cell(1, 4));
         driver.findElement(By.xpath("//div[@id='ApplicantDetailsControl']/div[@class='panel-body']/div[1]/div[5]/div/div[@class='application-dropzone dz-clickable']/div[@class='dz-message']")).click();
 
-
-        Runtime.getRuntime().exec("C:\\Automation\\Harding+\\Harding\\src\\main\\resources\\PDF upload.exe");
-
+        Runtime.getRuntime().exec("C:\\Automation\\Harding+\\Harding\\src\\main\\resources\\png upload.exe");
+        sleep(8000);
     }
 
     @And("I should get the <expected result> when submitting the application.")
     public void i_should_get_the_expected_result_when_submitting_the_application() {
-        // Write code here that turns the phrase above into concrete actions
-        WebDriverWait wait = new WebDriverWait(driver, java.time.Duration.ofSeconds(5));
-        WebElement next = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("/html//button[@id='btnCreateApplication']")));
+
+        WebDriverWait wait = new WebDriverWait(driver, java.time.Duration.ofSeconds(10));
+        WebElement next = wait.until(ExpectedConditions.elementToBeClickable(By.id("btnCreateApplication")));
         next.click();
-        driver.findElement(By.xpath("//div[@id='application-rendered-form']/div[1]/div[@class='panel-body']/div[2]/div[@class='col-lg-12']/div/select[@name='6ff4a8a3-9a51-4ef5-9e8f-32d2da1bf8c4']")).click();
-        System.out.println("Opened url");
+//        WebElement gender = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//div[@id='application-rendered-form']/div[1]/div[@class='panel-body']/div[2]/div[@class='col-lg-12']/div/select[@name='6ff4a8a3-9a51-4ef5-9e8f-32d2da1bf8c4']")));
+//        driver.findElement(By.xpath("//div[@id='application-rendered-form']/div[1]/div[@class='panel-body']/div[2]/div[@class='col-lg-12']/div/select[@name='6ff4a8a3-9a51-4ef5-9e8f-32d2da1bf8c4']")).click();
+//        gender.click();
+        System.out.println("Open");
     }
 
     @Then("I should be able to fill in the {string} with the Basic data and upload {string} on the first page")
@@ -105,22 +106,45 @@ public class Job_Application_Steps {
             throw new RuntimeException(e);
         }
 
-        try {
-            Thread.sleep(1000);
-        } catch (InterruptedException e) {
-            throw new RuntimeException(e);
-        }
+        sleep(10000);
 
 
     }
 
     @Then("I should get the {string} when submitting the application.")
-    public void i_should_get_the_when_submitting_the_application(String string) {
+    public void i_should_get_the_when_submitting_the_application(String error) {
         System.out.println("Opened url");
 
-        WebDriverWait wait = new WebDriverWait(driver, java.time.Duration.ofSeconds(5));
+        sleep(8000);
+        WebDriverWait wait = new WebDriverWait(driver, java.time.Duration.ofSeconds(8));
         WebElement next = wait.until(ExpectedConditions.elementToBeClickable(By.id("btnCreateApplication")));
         next.click();
+        sleep(4000);
+        if (driver.findElement(By.xpath("//*[@id=\"application-rendered-form\"]/div[1]/div[2]/div[2]/div/div/select")).isDisplayed()) {
+            driver.findElement(By.xpath("//*[@id=\"application-rendered-form\"]/div[1]/div[2]/div[2]/div/div/select")).click();
+            driver.findElement(By.xpath("/html/body/main/div[2]/div/div[1]/div/div/div/div[3]/div[1]/div[2]/div[2]/div/div/select/option[2]")).click();
+            driver.findElement(By.xpath("/html/body/main/div[2]/div/div[1]/div/div/div/div[3]/div[1]/div[2]/div[3]/div/div/select/option[3]")).click();
+            driver.findElement(By.xpath("/html/body/main/div[2]/div/div[1]/div/div/div/div[3]/div[1]/div[2]/div[6]/div/div[1]/select/option[21]")).click();
+            driver.findElement(By.xpath("/html/body/main/div[2]/div/div[1]/div/div/div/div[3]/div[1]/div[2]/div[7]/div/div[1]/select/option[5]")).click();
+            driver.findElement(By.xpath("/html/body/main/div[2]/div/div[1]/div/div/div/div[3]/div[1]/div[2]/div[8]/div/div[1]/select/option[3]")).click();
+            driver.quit();
+        } else if (driver.findElement(By.className("error")).isDisplayed()) {
+            if (!driver.getPageSource().contains(error)) {
+                fail("Error message doesn't match");
+                driver.quit();
+            } else {
+                driver.quit();
+            }
+        }
 
     }
+
+    private static void sleep(int millis) {
+        try {
+            Thread.sleep(millis);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
 }
