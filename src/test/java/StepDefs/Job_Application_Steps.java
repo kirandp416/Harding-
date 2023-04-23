@@ -43,6 +43,7 @@ public class Job_Application_Steps {
         operations.clickRejectCookies();
     }
 
+    //Search for vacancies in Landside Careers page.
     @And("searching for an Automated Test Analyst job")
     public void searching_for_an_Automated_Test_Analyst_job() {
         WebElement career = driver.findElement(By.id("menu-item-dropdown-215"));
@@ -61,13 +62,13 @@ public class Job_Application_Steps {
 
     }
 
-
+//    Apply for the searched vacancy
     @When("I click on apply button")
     public void i_click_on_apply_button() {
         operations.applyForTheJob();
         System.out.println("Clicked on Apply");
     }
-
+//Fill all the Mandatory data and upload file.
     @Then("I should be able to fill in the {string} with the Basic data and upload {string} on the first page")
     public void iShouldBeAbleToFillInTheMandatoryFieldsWithTheBasicDataAndUploadFileOnTheFirstPage(String mandatory, String file, DataTable dataTable) throws IOException {
         operations.firstName(mandatory);
@@ -88,9 +89,9 @@ public class Job_Application_Steps {
 
     }
 
+//Fill in the Details for Equal Opportunities and check if the basic details are valid
     @Then("I should get the {string} when submitting the application.")
     public void i_should_get_the_when_submitting_the_application(String error) {
-        System.out.println("Opened url");
 
         sleep(6000);
         WebDriverWait wait = new WebDriverWait(driver, java.time.Duration.ofSeconds(8));
