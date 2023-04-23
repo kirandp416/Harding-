@@ -11,7 +11,7 @@ public class GlobalSteps {
 
     @Before
     public void setUp(){
-        System.setProperty("webdriver.chrome.driver", "C:\\Automation\\Harding+\\Harding\\src\\main\\resources\\chromedriver.exe");
+        System.setProperty("webdriver.chrome.driver", "src/main/resources/chromedriver.exe");
         driver = new ChromeDriver();
     }
 
